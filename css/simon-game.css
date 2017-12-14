@@ -1,5 +1,29 @@
+.simon-button {
+    height: 48px;
+    width: 48px;
+    cursor: pointer;
+}
+
+#red {
+    background: red;
+}
+
+#blue {
+    background: blue;
+}
+
+#yellow {
+    background: goldenrod;
+}
+
+#green {
+    background: green;
+}
+
+
 /*=====HEAD SECTION=====*/
-.github{
+
+.github {
     font-size: 35px;
     text-decoration: none;
     color: black;
@@ -7,11 +31,10 @@
     text-decoration: none;
 }
 
-.github:hover{
+.github:hover {
     font-size: 35px;
     text-decoration: none;
-    color:black;
+    color: black;
     margin-top: 10px;
     text-decoration: none;
 }
-
