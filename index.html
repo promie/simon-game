@@ -28,24 +28,57 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12 text-right">
+			<div class="col-lg-12 text-right">
 				<a href="https://github.com/promie/simon-game" target="_blank">
 					<i class="fa fa-github github" id="github" aria-hidden="true"></i>
 				</a>
 			</div>
 		</div>
-
 		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<div class="simon-button" id="red"></div>
-					<div class="simon-button" id="blue"></div>
-					<div class="simon-button" id="yellow"></div>
-					<div class="simon-button" id="green"></div>
+		<div class="row">
+		<div class="col-lg-12">
+		<div id="container">
+			<div id="btn-container">
+			  <div id="center-border">
+				<div id="center">
+				  <h1>Simon</h1>
+				  <div id="throne-display"></div>
+				  <div class="btn-wrapper">
+					<div id="throne-start">
+					  <button type="button" id="btn-start"></button>
+					</div>
+					<br><h2>start</h2>
+				  </div>
+				  <div class="btn-wrapper">
+					<div id="throne-light">
+					  <div id="light"></div>
+					</div>
+					<br>
+					<div id="throne-strict">
+					  <button type="button" id="btn-strict"></button>
+					</div>
+					<br><h2>strict</h2>
+				  </div>
+				  <br>
+				  <div class="btn-wrapper">
+					<h2>off</h2>
+					<div id="throne-on">
+					  <button type="button" id="btn-on"><div></div><div></div></button>
+					</div>
+				  </button><h2>on</h2>
+				  </div>
 				</div>
+			  </div>
+			  <button type="button" id="btn-green" class="btn-surround"></button>
+			  <button type="button" id="btn-red" class="btn-surround"></button>
+			  <button type="button" id="btn-yellow" class="btn-surround"></button>
+			  <button type="button" id="btn-blue" class="btn-surround"></button>
 			</div>
-
+		  </div>
 		</div>
+	</div>
+		</div>
+
 
 		<!--jQuery-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

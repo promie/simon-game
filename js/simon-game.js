@@ -16,4 +16,13 @@ Push to an empty array?
 
 */
 
-// Random colour - Math.floor(Math.random() * 4) use it against an array
+// Random colour - Math.floor(Math.random() * 4) use it against an array - or the length of the array instead of the static number.
+
+//Push random colour into an empty array
+
+//if simon length is equal to zero then start a new game
+//else if go to next step if selected correctly --> if the sequence === length of array -1 then clear the sequence back to zero and call the next sequence else increment the steps.
+// and then if lose --> alert wrong!, sequence = [] and step back to 0;
+
+
+
