@@ -102,6 +102,22 @@ h1 {
     margin-left: 75px;
 }
 
+#green{
+    cursor: pointer;
+}
+
+#red{
+    cursor: pointer;
+}
+
+#yellow{
+    cursor: pointer;
+}
+
+#blue{
+    cursor: pointer;
+}
+
 
 /*=====HEAD SECTION=====*/
 
