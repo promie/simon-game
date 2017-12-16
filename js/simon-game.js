@@ -87,6 +87,18 @@ const playSound = (colour) =>{
     }
 }
 
+const toggle = () =>{
+    document.querySelector('.toggle-btn').addEventListener('click', function(){
+        
+        if($(this).hasClass('active')){
+            $(this).removeClass('active');
+            $('.title').html('POWER OFF');
+        }else{
+            $(this).addClass('active');
+            $('.title').html('POWER ON');
+        }
+    });
+}
 
 
 
