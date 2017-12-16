@@ -13,33 +13,57 @@ const greenButton = document.getElementById('green'),
 
 const simonObject = {
     sendColour: function(colour){
-        console.log(`New Colour: ${colour}`)
+
+        if(this.sequence.length === 0){
+            // Start a new game
+            this.nextSequence();
+        }else{
+
+            if(colour === this.sequence[this.step]){
+                //Go to the next step
+                if(this.step === this.sequence.length - 1){
+                    console.log('Sequence Complete');
+                    this.step = 0;
+                    this.nextSequence();
+                }else{
+                    this.step++;
+                }
+            }else{
+                //!! Lose Condition
+                alert('WRONG!!!');
+                this.sequence = [];
+                this.step = 0;
+            }
+        }
     },
     sequence: [],
     colours: [GREEN, RED, YELLOW, BLUE],
+    step: 0,
     nextSequence: function(){
         const randNum = Math.floor(Math.random() * this.colours.length)
         const nextColour = this.colours[randNum];
-        console.log(`The random colour is: ${nextColour}`);
+        this.sequence.push(nextColour);
+        console.log(this.sequence);
     }
 }
+
 
 greenButton.addEventListener('click', function(){
     simonObject.sendColour(GREEN);
     playSound(GREEN);
 });
 
-red.addEventListener('click', function(){
+redButton.addEventListener('click', function(){
     simonObject.sendColour(RED);
     playSound(RED);
 });
 
-yellow.addEventListener('click', function(){
+yellowButton.addEventListener('click', function(){
     simonObject.sendColour(YELLOW);
     playSound(YELLOW);
 });
 
-blue.addEventListener('click', function(){
+blueButton.addEventListener('click', function(){
     simonObject.sendColour(BLUE);
     playSound(BLUE);
 });
