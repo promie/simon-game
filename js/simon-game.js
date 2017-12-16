@@ -1,4 +1,3 @@
-
 const greenButton = document.getElementById('green'),
     redButton = document.getElementById('red'),
     yellowButton = document.getElementById('yellow'),
@@ -12,15 +11,19 @@ const greenButton = document.getElementById('green'),
     YELLOW = 'YELLOW',
     GREEN = 'GREEN';
 
-
 const simonObject = {
     sendColour: function(colour){
         console.log(`New Colour: ${colour}`)
+    },
+    sequence: [],
+    colours: [GREEN, RED, YELLOW, BLUE],
+    nextSequence: function(){
+        const randNum = Math.floor(Math.random() * this.colours.length)
+        const nextColour = this.colours[randNum];
+        console.log(`The random colour is: ${nextColour}`);
     }
 }
 
-
-//Click Events
 greenButton.addEventListener('click', function(){
     simonObject.sendColour(GREEN);
     playSound(GREEN);
@@ -41,9 +44,7 @@ blue.addEventListener('click', function(){
     playSound(BLUE);
 });
 
-//play-sound Functions
 const playSound = (colour) =>{
-    
     switch(colour){
         case 'GREEN':
             greenSound.play();
