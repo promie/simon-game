@@ -3,9 +3,9 @@ body {
 }
 
 .spacing {
-    margin: 5vh auto 0;
-    width: 225px;
-    height: 225px;
+    margin: 6vh auto 0;
+    width: 260px;
+    height: 260px;
 }
 
 .col-xs-6 {
@@ -18,8 +18,8 @@ body {
     padding: 0;
 }
 
-#green,
-#red {
+.green,
+.red {
     height: 100%;
 }
 
@@ -35,22 +35,53 @@ body {
     text-align: center;
     font-size: 36px;
     z-index: 2;
+    border: 2px solid black;
+    margin-top: 18px;
+    margin-left: 5px;
 }
 
-#green {
-    background: #2ecc71;
+.green {
+    background: #0a0;
+    border: 2px solid black;
+    
 }
 
-#red {
-    background: #e74c3c;
+.green-active{
+    background: darkgreen !important;
+    border: 2px solid black;
+    height: 100%;
 }
 
-#yellow {
-    background: #f1c40f;
+
+.red {
+    background: red;
+    border: 2px solid black;
 }
 
-#blue {
-    background: #3498db;
+.red-active{
+    background: darkred !important;
+    border: 2px solid black;
+    height: 100%;
+}
+
+.yellow {
+    background: yellow;
+    border: 2px solid black;
+}
+
+.yellow-active{
+    background: #e6d47e !important;
+    border: 2px solid black;
+}
+
+.blue {
+    background: blue;
+    border: 2px solid black;
+}
+
+.blue-active{
+    background: darkblue !important;
+    border: 2px solid black;
 }
 
 .text {
@@ -102,59 +133,21 @@ h1 {
     margin-left: 75px;
 }
 
-#green{
+.green{
     cursor: pointer;
 }
 
-#red{
+.red{
     cursor: pointer;
 }
 
-#yellow{
+.yellow{
     cursor: pointer;
 }
 
-#blue{
+.blue{
     cursor: pointer;
 }
-
-/*=====ON OFF TOGGLE BUTTON=====*/
-.toggle-btn{
-    width: 50px;
-    height: 30px;
-    background: gray;
-    border-radius: 30px;
-    padding: 5px;
-    display: inline-block;
-    transition: all 300ms ease-in-out;
-}
-
-.toggle-btn >.inner-circle {
-    width: 30px;
-    height: 30px;
-    background: #fff;
-    border-radius: 50%;
-    margin-top: -5px;
-    margin-left: -4px;
-    transition: 300ms ease-in-out;
-}
-
-.toggle-btn.active{
-    background:#00acee;
-}
-
-.toggle-btn.active > .inner-circle{
-    margin-left: 15px;
-}
-
-.on-off{
-    margin-top: 20px;
-    margin-bottom: -30px;
-    margin-left: 160px;
-}
-
-
-
 
 /*=====HEAD SECTION=====*/
 
@@ -172,4 +165,11 @@ h1 {
     color: white;
     margin-top: 10px;
     text-decoration: none;
+}
+
+.start{
+    font-size: 20px;
+    color: white;
+    display: inline-block;
+    cursor: pointer;
 }
