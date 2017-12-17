@@ -121,3 +121,17 @@ function playSound(id){
 
     sound.play();
 }
+
+
+
+
+//On-Off Function
+const onOFF = () =>{
+    const status = document.getElementById('on-off');
+    
+    if(!status.checked){
+        document.querySelector('.title').innerHTML = 'OFF';
+    }else{
+        document.querySelector('.title').innerHTML = 'ON';
+    }
+}
