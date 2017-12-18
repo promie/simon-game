@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Bangers');
+@import url('https://fonts.googleapis.com/css?family=Patrick+Hand');
+
 body {
     background: #313c42;
 }
@@ -119,16 +122,22 @@ h1 {
 }
 
 .title{
-    font-size: 35px;
+    font-size: 60px;
     color: white;
+    font-family: 'Bangers', cursive;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px black;
 
 }
 
 .author{
     color: white;
-    font-size: 11px;
+    font-size: 17px;
     margin-top: -15px;
-    margin-left: 75px;
+    margin-left: 118px;
+    font-weight: bold;
+    font-family: 'Patrick Hand', cursive;
+    margin-bottom: -30px;
 }
 
 .green{
@@ -230,4 +239,41 @@ h1 {
 
   .control{
       margin-top: 7px;
+  }
+  
+/*=====SIMON FONT COLOUR=====*/
+  .s{
+      color: #0a0;
+  }
+
+  .i{
+      color: red;
+  }
+
+  .m{
+      color: yellow;
+  }
+
+  .o{
+      color: blue;
+  }
+
+  .n{
+      color: #0a0;
+  }
+
+  .g{
+      color: red;
+  }
+
+  .a{
+      color: yellow;
+  }
+
+  .mm{
+      color: blue;
+  }
+
+  .e{
+      color: #0a0;
   }
