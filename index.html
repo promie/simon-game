@@ -43,18 +43,6 @@
 		</div>
 
 		<div class="container">
-			<div class="row">
-				<div class="text-center control">
-					<label class="switch">
-						<input type="checkbox" id="on-off" onclick="init()">
-						<span class="slider round"></span>
-					  </label>
-				</div>
-				
-			</div>
-		</div>
-
-		<div class="container">
 			<div class="row spacing">
 				<div class="col-xs-12">					
 					<div id="0" class="col-xs-6 green pad"></div>
@@ -64,11 +52,23 @@
 				<div id="2" class="col-xs-6 yellow pad"></div>
 				<div id="3" class="col-xs-6 blue pad"></div>
 			</div>
-
-
+			<div class="container">
+					<div class="row">
+						<div class="text-center control">
+							<label class="switch">
+								<input type="checkbox" id="on-off" onclick="init()">
+								<span class="slider round"></span>
+							  </label>
+						</div>
+						
+					</div>
+				</div>
 
 			<div class="controls text-center">
-				<div class="start" id="start">START</div>
+				<div class="success" id="success">SUCCESS:<span id="level-num">0</span>/20</div>
+				<div class="fail" id="fail">FAIL:<span id="fail-num">0</span></div>
+				<div class="start" id="start"><i class="fa fa-play-circle-o" aria-hidden="true"></i> START</div>
+				<div class="reset" id="reset"><i class="fa fa-refresh" aria-hidden="true"></i> RESET</div>
 			</div>
 
 
