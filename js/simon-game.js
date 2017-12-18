@@ -22,6 +22,7 @@ const reset = document.getElementById('reset');
 const levelNum = document.getElementById('level-num');
 const failNum = document.getElementById('fail-num');
 const control = document.getElementById('control');
+const github = document.getElementById('github');
 
 //Start Board game
 $(document).ready(function(){
@@ -161,6 +162,7 @@ const init = () =>{
         isON = true;
         changeColorBackground('normal');
         displayControl('block');
+        github.style.display = 'none';
         startGame();
         userPad();  
     }
@@ -184,7 +186,6 @@ const changeColorBackground = (colour) =>{
 } 
 
 // show the display()
-
 const displayControl = (type) =>{
     success.style.display = `inline-${type}`;
     fail.style.display = `inline-${type}`;
@@ -196,6 +197,7 @@ const hideControl = () =>{
     fail.style.display = 'none';
     start.style.display = 'none'; 
     reset.style.display = 'none';
+    github.style.display = 'block';
 }
 
 //reset Button
