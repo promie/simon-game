@@ -179,59 +179,44 @@ h1 {
 }
 
 .start{
-    font-size: 35px;
+    font-size: 28px;
     cursor: pointer;
     color: black;
     font-weight: bold;
     font-family: 'Patrick Hand', cursive;
-    display: none;
+    display: inline-block;
 }
 
 
 
 .start:hover{
-    font-size: 35px;
+    font-size: 28px;
     cursor: pointer;
     color: #0a0;
     font-weight: bold;
     font-family: 'Patrick Hand', cursive;
+    display: inline-block;
 }
 
-.reset{
-    font-size: 35px;
+.strict{
+    font-size: 28px;
     cursor: pointer;
     color: black;
     font-weight: bold;
     font-family: 'Patrick Hand', cursive;
-    display: none;
+    display: inline-block;
+    margin-left: 20px;
 }
 
-.reset:hover{
-    font-size: 35px;
+.strict:hover{
+    font-size: 28px;
     cursor: pointer;
     color: red;
     font-weight: bold;
     font-family: 'Patrick Hand', cursive;
-    display: none;
+    display: inline-block;
 }
 
-.reset-me{
-    font-size: 35px;
-    cursor: pointer;
-    color: black;
-    font-weight: bold;
-    font-family: 'Patrick Hand', cursive;
-    display: none;
-}
-
-.reset-me:hover{
-    font-size: 35px;
-    cursor: pointer;
-    color: red;
-    font-weight: bold;
-    font-family: 'Patrick Hand', cursive;
-    display: none;
-}
 
 .success{
     font-size: 25px;

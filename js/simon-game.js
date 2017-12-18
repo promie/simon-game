@@ -1,3 +1,236 @@
+
+$(document).ready(function() {
+
+    changeColorBackground('grey');
+    hideControl();
+    init();
+  
+  });
+
+
+
+
+  const start = document.getElementById('start');
+  const whitePad = document.getElementById('white');
+  const green = document.getElementById('0');
+  const red = document.getElementById('1');
+  const yellow = document.getElementById('2');
+  const blue = document.getElementById('3');
+  const success = document.getElementById('success');
+  const fail = document.getElementById('fail');
+  const strict = document.getElementById('strict');
+  const levelNum = document.getElementById('level-num');
+  const failNum = document.getElementById('fail-num');
+  const control = document.getElementById('control');
+  const github = document.getElementById('github');
+  
+  //sound
+  const failSound = document.getElementById('fail-sound');
+  const powerON = document.getElementById('power-on');
+  const powerOFF = document.getElementById('power-off');
+  let isON = false;
+
+  //On-Off Function
+  const init = () =>{
+    const status = document.getElementById('on-off');
+
+
+    
+    if(status.checked === false){
+        isON = false;
+        powerOffSound();
+        console.log('POWER OFF');
+        changeColorBackground('grey');
+        hideControl();
+
+    }else{
+        powerOnSound();
+        console.log('POWER ON');
+        changeColorBackground('normal');
+        displayControl('block');
+        codeDump();
+    }
+}
+
+const powerOnSound = () =>{
+    powerON.play();
+}
+
+const powerOffSound = () => {
+    powerOFF.play();
+}
+
+
+
+const changeColorBackground = (colour) =>{
+    switch(colour){
+        case 'grey':
+            green.style.backgroundColor = `${colour}`;
+            red.style.backgroundColor = `${colour}`;
+            yellow.style.backgroundColor = `${colour}`;
+            blue.style.backgroundColor = `${colour}`;
+            break;
+        case 'normal':
+            green.style.backgroundColor = '#0a0';
+            red.style.backgroundColor = 'red';
+            yellow.style.backgroundColor = 'yellow';
+            blue.style.backgroundColor = 'blue';
+    }
+} 
+
+// show the display()
+const displayControl = (type) =>{
+    success.style.display = `inline-${type}`;
+    fail.style.display = `inline-${type}`;
+    start.style.display = `inline-${type}`;
+    strict.style.display = `inline-${type}`;
+}
+
+const hideControl = () =>{
+    success.style.display = 'none';
+    fail.style.display = 'none';
+    start.style.display = 'none'; 
+    strict.style.display = 'none';
+    github.style.display = 'block';
+}
+
+const codeDump = () =>{
+    var array = [],
+    strict = false,
+    arrayCheck = [],
+    turn = 0,
+    divs = ["0", "1", "2", "3"],
+    j = 0,
+    greenAudio = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound1.mp3"),
+    redAudio = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound2.mp3"),
+    yellowAudio = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound3.mp3"),
+    blueAudio = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound4.mp3");
+
+
+
+  // set colors back to normal
+  function stopDisplay() {
+    $("#0").css("background", "#0a0");
+    $("#1").css("background", "red");
+    $("#2").css("background", "yellow");
+    $("#3").css("background", "blue");
+  }
+
+  function randomizer() { // add random button
+    turn++;    
+    $("#white").text(turn);
+    var length = $(".col-xs-6").length;
+    var random = Math.floor(Math.random() * length);
+    array.push(divs[random]);
+    displaySet(array);
+  }
+  // change colors
+  function currentDisplay(color) {
+    switch (color) {
+      case "0":
+        $("#0").css("background", "darkgreen");
+        greenAudio.play();
+        break;
+      case "1":
+        $("#1").css("background", "darkred");
+        redAudio.play();
+        break;
+      case "2":
+        $("#2").css("background", "#e6d47e");
+        yellowAudio.play();
+        break;
+      case "3":
+        $("#3").css("background", "darkblue");
+        blueAudio.play();
+        break;
+    }
+    window.setTimeout(function() {
+      stopDisplay();
+    }, 200);
+  }
+
+  function displaySet(array) {
+    var i = 0;
+    var interval = setInterval(function() {
+      currentDisplay(array[i]);
+      i++;
+      if (i >= array.length) {
+        clearInterval(interval);
+      }
+    }, 650);
+  }
+
+  function checkIds() {
+    $(".col-xs-6").click(function() {
+      var ID = $(this).attr("id");
+      currentDisplay(ID);
+      arrayCheck.push(ID);
+      // if wrong button unbind and display error
+      if (ID !== array[j]) {
+        j = 0;
+        $("#white").text("X");
+        $(".col-xs-6").unbind();
+        if(strict){
+          return false;
+        }
+        setTimeout(function() {
+          $("#white").text(turn);
+          displaySet(array);
+          checkIds();
+        }, 1000);
+
+      } else if (typeof array[20] !== 'undefined'){
+        $(".col-xs-6").unbind();
+        $(".text").show();
+        
+      } else if(typeof array[j+1] === 'undefined'){
+        $(".col-xs-6").unbind();
+        setTimeout(function() {
+          j=0;
+          randomizer();
+          checkIds();
+        }, 1000);
+      }
+      else{
+        j++;
+      }
+    });
+  }  
+  
+  function reset(){
+    stopDisplay();
+    //$("div:not(.btn)").unbind();
+    array = []; turn = 0; j = 0; arrayCheck = [];
+    $(".text").hide();    
+    randomizer();
+    displaySet(array);
+    checkIds();
+  }
+
+  $(".start").click(function() {
+    strict = false;
+    document.getElementById('strict').style.color = 'black';
+    this.style.color = 'green';
+    reset();
+  });
+  
+  $("#strict").click(function(){
+    strict = true;
+    start.style.color = 'black';
+    this.style.color = 'red';
+    reset();    
+  });
+
+}
+
+
+
+
+
+
+/* ORIGINAL CODE
+
+
 //Variables
 userSeq = [];
 simonSeq = [];
@@ -18,7 +251,7 @@ const yellow = document.getElementById('2');
 const blue = document.getElementById('3');
 const success = document.getElementById('success');
 const fail = document.getElementById('fail');
-const reset = document.getElementById('reset');
+const strict = document.getElementById('strict');
 const levelNum = document.getElementById('level-num');
 const failNum = document.getElementById('fail-num');
 const control = document.getElementById('control');
@@ -50,7 +283,7 @@ const startGame = () =>{
             level++;
             levelNum.innerHTML = level;
             simonSequence();
-            reset.style.display = 'block';
+            strict.style.display = 'block';
             this.style.display = 'none';
             control.style.display = 'none';
         });    
@@ -227,19 +460,20 @@ const changeColorBackground = (colour) =>{
 const displayControl = (type) =>{
     success.style.display = `inline-${type}`;
     fail.style.display = `inline-${type}`;
-    start.style.display = `${type}`;
+    start.style.display = `inline-${type}`;
+    strict.style.display = `inline-${type}`;
 }
 
 const hideControl = () =>{
     success.style.display = 'none';
     fail.style.display = 'none';
     start.style.display = 'none'; 
-    reset.style.display = 'none';
+    strict.style.display = 'none';
     github.style.display = 'block';
 }
 
-//reset Button
-reset.addEventListener('click', function(){
+//strict Button
+strict.addEventListener('click', function(){
     control.style.display = 'block';
     this.style.display = 'none';
     start.style.display = 'block';    
@@ -257,3 +491,5 @@ const powerOnSound = () =>{
 const powerOffSound = () => {
     powerOFF.play();
 }
+
+*/
