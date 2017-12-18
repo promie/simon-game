@@ -16,6 +16,12 @@ const green = document.getElementById('0');
 const red = document.getElementById('1');
 const yellow = document.getElementById('2');
 const blue = document.getElementById('3');
+const success = document.getElementById('success');
+const fail = document.getElementById('fail');
+const reset = document.getElementById('reset');
+const levelNum = document.getElementById('level-num');
+const failNum = document.getElementById('fail-num');
+const control = document.getElementById('control');
 
 //Start Board game
 $(document).ready(function(){
@@ -32,7 +38,11 @@ $(document).ready(function(){
 const startGame = () =>{
     start.addEventListener('click', function(){
         level++;
+        levelNum.innerHTML = level;
         simonSequence();
+        reset.style.display = 'block';
+        this.style.display = 'none';
+        control.style.display = 'none';
     })
 }
 
@@ -55,6 +65,7 @@ const userPad = () =>{
         //checking end of sequence
         if(userSeq.length === simonSeq.length && userSeq.length < NUM_OF_LEVELS){
             level++
+            levelNum.innerHTML = level;
             userSeq= [];
             simonSequence();
         }
@@ -96,7 +107,9 @@ const displayError = () =>{
 //Simon sequence 
 const simonSequence = () =>{
     console.log(level);
+
     whitePad.innerHTML = level;
+    levelNum.innerHTML = level;
     getRandomNum();
     let i = 0;
     let myInterval = setInterval(function(){
@@ -142,10 +155,12 @@ const init = () =>{
         console.log('OFF');
         isON = false;
         changeColorBackground('grey');
+        hideControl();
     }else{
         console.log('ON');
         isON = true;
         changeColorBackground('normal');
+        displayControl('block');
         startGame();
         userPad();  
     }
@@ -167,3 +182,25 @@ const changeColorBackground = (colour) =>{
             blue.style.backgroundColor = 'blue';
     }
 } 
+
+// show the display()
+
+const displayControl = (type) =>{
+    success.style.display = `inline-${type}`;
+    fail.style.display = `inline-${type}`;
+    start.style.display = `${type}`;
+}
+
+const hideControl = () =>{
+    success.style.display = 'none';
+    fail.style.display = 'none';
+    start.style.display = 'none'; 
+    reset.style.display = 'none';
+}
+
+//reset Button
+reset.addEventListener('click', function(){
+    control.style.display = 'block';
+    this.style.display = 'none';
+    start.style.display = 'block';    
+});
