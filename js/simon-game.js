@@ -92,29 +92,34 @@ const userPad = () =>{
 
 // Checking user sequence against simons
 const checkUserSequence = () =>{
-    for(var i = 0; i < userSeq.length; i++) {
-        if(userSeq[i] != simonSeq[i]) {      
-          return false;
-        }
-      }
-      return true;
+    if(isON){
+        for(var i = 0; i < userSeq.length; i++) {
+            if(userSeq[i] != simonSeq[i]) {      
+              return false;
+            }
+          }
+          return true;
+    }
 }
 
 //Display Error
 const displayError = () =>{
-    console.log('error!');
-    let counter = 0;
-    let myError = setInterval(function(){
-        whitePad.innerHTML = '--';
-        counter++;
-        playFailSound();
-        if(counter == 3){
-            whitePad.innerHTML = level;
-            clearInterval(myError);
-            userSeq = [];
-            counter = 0;
-        }
-    }, 500);
+
+    if(isON){
+        console.log('error!');
+        let counter = 0;
+        let myError = setInterval(function(){
+            whitePad.innerHTML = '--';
+            counter++;
+            playFailSound();
+            if(counter == 3){
+                whitePad.innerHTML = level;
+                clearInterval(myError);
+                userSeq = [];
+                counter = 0;
+            }
+        }, 500);
+    }
 }
 
 
@@ -123,7 +128,6 @@ const displayError = () =>{
 const simonSequence = () =>{
     if(isON){
         console.log(level);
-        
             whitePad.innerHTML = level;
             levelNum.innerHTML = level;
             getRandomNum();
@@ -144,25 +148,32 @@ const simonSequence = () =>{
 
 //Generate Random number
 const getRandomNum = () =>{
-    const random = Math.floor(Math.random() * 4);
-    simonSeq.push(random);
+    if(isON){
+        const random = Math.floor(Math.random() * 4);
+        simonSeq.push(random);    
+    }
 }
 
 //add Temporary Class and sound
 const addClassSound = (id, colour) =>{
-    let element = document.getElementById(`${id}`);
-    element.classList.add(`${colour}-active`);
-    playSound(id);
-
-    setTimeout(function(){
-        element.classList.remove(`${colour}-active`);
-    }, 500);
+    if(isON){
+        let element = document.getElementById(`${id}`);
+        element.classList.add(`${colour}-active`);
+        playSound(id);
+    
+        setTimeout(function(){
+            element.classList.remove(`${colour}-active`);
+        }, 500);    
+    }
 }
 
 //play board sound
 const playSound = (id) =>{
-    const sound = new Audio(boardSound[id]);
-    sound.play();
+    if(isON){
+        const sound = new Audio(boardSound[id]);
+        sound.play();
+    }
+
 }
 
 //On-Off Function
@@ -172,10 +183,10 @@ const init = () =>{
     if(!status.checked){
         console.log('OFF'); 
         changeColorBackground('grey');   
-        isON = false;
-        console.log(isON);
         hideControl();
         powerOffSound();
+        isON = false;
+        console.log(isON);
 
     }else{
         console.log('ON');
