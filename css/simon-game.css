@@ -101,9 +101,7 @@ h1 {
     font-size: 84px;
 }
 
-.buttons {
-    text-align: center;
-}
+
 
 .btn {
     background: #a66abe;
@@ -232,5 +230,5 @@ h1 {
 
   .control{
       margin-top: 7px;
-      margin-left: 240px;
+      margin-left: 100px;
   }

@@ -20,7 +20,11 @@ const blue = document.getElementById('3');
 //Start Board game
 $(document).ready(function(){
 
-    init();
+    if(isON !== false){
+        init();
+    }else{
+        changeColorBackground('grey');
+    }
 
 });
 
