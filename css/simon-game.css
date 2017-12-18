@@ -108,19 +108,14 @@ h1 {
 
 
 .btn {
-    background: #a66abe;
+    display: inline-block;
     color: #ecf0f1;
     font-size: 1.6em;
     font-weight: bold;
     margin: 15px 5px;
 }
 
-.btn:hover,
-.btn:focus,
-.btn:active {
-    background: #8f44ae;
-    color: #ecf0f1;
-}
+
 
 .title{
     font-size: 60px;
@@ -218,24 +213,6 @@ h1 {
 }
 
 
-.success{
-    font-size: 25px;
-    color: white;
-    display: none;
-    color: black;
-    font-family: 'Patrick Hand', cursive;
-    
-}
-
-.fail{
-    font-size: 25px;
-    color: white;
-    display: none;
-    color: black;
-    font-family: 'Patrick Hand', cursive;
-    margin-left: 80px;
-}
-
 /*=====SLIDER=====*/
 .switch {
     position: relative;
@@ -292,10 +269,9 @@ h1 {
     border-radius: 50%;
   }
 
-  .control{
-      margin-top: 7px;
+  .controls{
+      margin-top: 15px;
       margin-bottom: -10px;
-      margin-left: -260px;
   }
   
 /*=====SIMON FONT COLOUR=====*/
