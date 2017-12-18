@@ -24,10 +24,17 @@ const failNum = document.getElementById('fail-num');
 const control = document.getElementById('control');
 const github = document.getElementById('github');
 
+//
+const failSound = document.getElementById('fail-sound');
+const powerON = document.getElementById('power-on');
+const powerOFF = document.getElementById('power-off');
+
+
+
 //Start Board game
 $(document).ready(function(){
 
-    if(isON !== false){
+    if(isON){
         init();
     }else{
         changeColorBackground('grey');
@@ -37,45 +44,50 @@ $(document).ready(function(){
 
 //Start Game
 const startGame = () =>{
-    start.addEventListener('click', function(){
-        level++;
-        levelNum.innerHTML = level;
-        simonSequence();
-        reset.style.display = 'block';
-        this.style.display = 'none';
-        control.style.display = 'none';
-    })
+    
+    if(isON){
+        start.addEventListener('click', function(){
+            level++;
+            levelNum.innerHTML = level;
+            simonSequence();
+            reset.style.display = 'block';
+            this.style.display = 'none';
+            control.style.display = 'none';
+        });    
+    }
 }
 
 //userPadListener
 const userPad = () =>{
+    if(isON){
+        $('.pad').click(function(){
+            id = $(this).attr('id');
+            colour = $(this).attr('class').split(' ')[1];
+            userSeq.push(id);
+            console.log(id + ' ' + colour);
+            addClassSound(id, colour);
+            
+            //Checking user sequence
+            if(!checkUserSequence()){
+                displayError();
+                userSeq = [];
+            }
+    
+            //checking end of sequence
+            if(userSeq.length === simonSeq.length && userSeq.length < NUM_OF_LEVELS){
+                level++
+                levelNum.innerHTML = level;
+                userSeq= [];
+                simonSequence();
+            }
+    
+            //Checking for winners
+            if(userSeq.length == NUM_OF_LEVELS){
+                whitePad.innerHTML = 'Y';
+            }
+        });
+    }
 
-    $('.pad').click(function(){
-        id = $(this).attr('id');
-        colour = $(this).attr('class').split(' ')[1];
-        userSeq.push(id);
-        console.log(id + ' ' + colour);
-        addClassSound(id, colour);
-        
-        //Checking user sequence
-        if(!checkUserSequence()){
-            displayError();
-            userSeq = [];
-        }
-
-        //checking end of sequence
-        if(userSeq.length === simonSeq.length && userSeq.length < NUM_OF_LEVELS){
-            level++
-            levelNum.innerHTML = level;
-            userSeq= [];
-            simonSequence();
-        }
-
-        //Checking for winners
-        if(userSeq.length == NUM_OF_LEVELS){
-            whitePad.innerHTML = 'Y';
-        }
-    });
 }
 
 // Checking user sequence against simons
@@ -95,6 +107,7 @@ const displayError = () =>{
     let myError = setInterval(function(){
         whitePad.innerHTML = '--';
         counter++;
+        playFailSound();
         if(counter == 3){
             whitePad.innerHTML = level;
             clearInterval(myError);
@@ -105,24 +118,28 @@ const displayError = () =>{
 }
 
 
+
 //Simon sequence 
 const simonSequence = () =>{
-    console.log(level);
+    if(isON){
+        console.log(level);
+        
+            whitePad.innerHTML = level;
+            levelNum.innerHTML = level;
+            getRandomNum();
+            let i = 0;
+            let myInterval = setInterval(function(){
+                id = simonSeq[i];
+                colour = $('#'+id).attr('class').split(' ')[1];
+                console.log(id + ' ' + colour);
+                addClassSound(id, colour);
+                i++
+                if(i === simonSeq.length){
+                    clearInterval(myInterval);
+                }
+            }, 1000);
+    }
 
-    whitePad.innerHTML = level;
-    levelNum.innerHTML = level;
-    getRandomNum();
-    let i = 0;
-    let myInterval = setInterval(function(){
-        id = simonSeq[i];
-        colour = $('#'+id).attr('class').split(' ')[1];
-        console.log(id + ' ' + colour);
-        addClassSound(id, colour);
-        i++
-        if(i === simonSeq.length){
-            clearInterval(myInterval);
-        }
-    }, 1000);
 }
 
 //Generate Random number
@@ -153,16 +170,26 @@ const init = () =>{
     const status = document.getElementById('on-off');
     
     if(!status.checked){
-        console.log('OFF');
+        console.log('OFF'); 
+        changeColorBackground('grey');   
         isON = false;
-        changeColorBackground('grey');
+        console.log(isON);
         hideControl();
+        powerOffSound();
+
     }else{
         console.log('ON');
+        powerOnSound();
         isON = true;
+        console.log(isON);
         changeColorBackground('normal');
         displayControl('block');
         github.style.display = 'none';
+        userSeq = [];
+        simonSeq = [];
+        level = 0;
+        white.innerHTML = level;
+        levelNum.innerHTML = level;
         startGame();
         userPad();  
     }
@@ -206,3 +233,16 @@ reset.addEventListener('click', function(){
     this.style.display = 'none';
     start.style.display = 'block';    
 });
+
+// Play Sound
+const playFailSound = () =>{
+    failSound.play();
+}
+
+const powerOnSound = () =>{
+    powerON.play();
+}
+
+const powerOffSound = () => {
+    powerOFF.play();
+}
