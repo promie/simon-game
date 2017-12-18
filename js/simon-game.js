@@ -1,25 +1,40 @@
 //Variables
 userSeq = [];
 simonSeq = [];
+let isON = false;
 const NUM_OF_LEVELS = 20;
 let id, colour, level = 0;
-let boardSound = [
+const boardSound = [
     "https://s3.amazonaws.com/freecodecamp/simonSound1.mp3", //green
 	"https://s3.amazonaws.com/freecodecamp/simonSound2.mp3", //red
 	"https://s3.amazonaws.com/freecodecamp/simonSound3.mp3", //yellow
 	"https://s3.amazonaws.com/freecodecamp/simonSound4.mp3" //blue
 ]
-
+const start = document.getElementById('start');
+const whitePad = document.getElementById('white');
+const green = document.getElementById('0');
+const red = document.getElementById('1');
+const yellow = document.getElementById('2');
+const blue = document.getElementById('3');
 
 //Start Board game
 $(document).ready(function(){
 
-    $('#start').on('click', function(){
+    init();
+
+});
+
+//Start Game
+const startGame = () =>{
+    start.addEventListener('click', function(){
         level++;
         simonSequence();
-    });
+    })
+}
 
-    //user pad listener;
+//userPadListener
+const userPad = () =>{
+
     $('.pad').click(function(){
         id = $(this).attr('id');
         colour = $(this).attr('class').split(' ')[1];
@@ -32,8 +47,7 @@ $(document).ready(function(){
             displayError();
             userSeq = [];
         }
-        
-        
+
         //checking end of sequence
         if(userSeq.length === simonSeq.length && userSeq.length < NUM_OF_LEVELS){
             level++
@@ -43,15 +57,13 @@ $(document).ready(function(){
 
         //Checking for winners
         if(userSeq.length == NUM_OF_LEVELS){
-            $('#white').text('Y');
+            whitePad.innerHTML = 'Y';
         }
-
     });
-
-});
+}
 
 // Checking user sequence against simons
-function checkUserSequence(){
+const checkUserSequence = () =>{
     for(var i = 0; i < userSeq.length; i++) {
         if(userSeq[i] != simonSeq[i]) {      
           return false;
@@ -61,16 +73,14 @@ function checkUserSequence(){
 }
 
 //Display Error
-function displayError(){
-
+const displayError = () =>{
     console.log('error!');
-
     let counter = 0;
     let myError = setInterval(function(){
-        $('#white').text('--');
+        whitePad.innerHTML = '--';
         counter++;
         if(counter == 3){
-            $('#white').text(level);
+            whitePad.innerHTML = level;
             clearInterval(myError);
             userSeq = [];
             counter = 0;
@@ -80,10 +90,9 @@ function displayError(){
 
 
 //Simon sequence 
-function simonSequence(){
-    
+const simonSequence = () =>{
     console.log(level);
-    $('#white').text(level);
+    whitePad.innerHTML = level;
     getRandomNum();
     let i = 0;
     let myInterval = setInterval(function(){
@@ -95,43 +104,62 @@ function simonSequence(){
         if(i === simonSeq.length){
             clearInterval(myInterval);
         }
-
     }, 1000);
 }
 
 //Generate Random number
-function getRandomNum(){
-    let random = Math.floor(Math.random() * 4);
+const getRandomNum = () =>{
+    const random = Math.floor(Math.random() * 4);
     simonSeq.push(random);
 }
 
 //add Temporary Class and sound
-
-function addClassSound(id, colour){
-    $('#'+id).addClass(colour + '-active');
+const addClassSound = (id, colour) =>{
+    let element = document.getElementById(`${id}`);
+    element.classList.add(`${colour}-active`);
     playSound(id);
-    setTimeout (function(){
-        $('#'+id).removeClass(colour + '-active');
-    },500);
+
+    setTimeout(function(){
+        element.classList.remove(`${colour}-active`);
+    }, 500);
 }
 
 //play board sound
-function playSound(id){
-    var sound = new Audio(boardSound[id]);
-
+const playSound = (id) =>{
+    const sound = new Audio(boardSound[id]);
     sound.play();
 }
 
-
-
-
 //On-Off Function
-const onOFF = () =>{
+const init = () =>{
     const status = document.getElementById('on-off');
     
     if(!status.checked){
-        document.querySelector('.title').innerHTML = 'OFF';
+        console.log('OFF');
+        isON = false;
+        changeColorBackground('grey');
     }else{
-        document.querySelector('.title').innerHTML = 'ON';
+        console.log('ON');
+        isON = true;
+        changeColorBackground('normal');
+        startGame();
+        userPad();  
     }
 }
+
+//Change Background Colour
+const changeColorBackground = (colour) =>{
+    switch(colour){
+        case 'grey':
+            green.style.backgroundColor = `${colour}`;
+            red.style.backgroundColor = `${colour}`;
+            yellow.style.backgroundColor = `${colour}`;
+            blue.style.backgroundColor = `${colour}`;
+            break;
+        case 'normal':
+            green.style.backgroundColor = '#0a0';
+            red.style.backgroundColor = 'red';
+            yellow.style.backgroundColor = 'yellow';
+            blue.style.backgroundColor = 'blue';
+    }
+} 
