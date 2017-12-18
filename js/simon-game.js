@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var array = [],
+    let array = [],
       strict = false,
       arrayCheck = [],
       turn = 0,
@@ -9,117 +9,136 @@ $(document).ready(function() {
       redAudio = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound2.mp3"),
       yellowAudio = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound3.mp3"),
       blueAudio = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound4.mp3");
-  
+
+    //Variables
+    const green = document.getElementById('0');
+    const red = document.getElementById('1');
+    const yellow = document.getElementById('2');
+    const blue = document.getElementById('3');
+    const white = document.getElementById('white');
+    const pads = $(".col-xs-6");
+    const unam = $("div:not(.btn)");
+    const startButton = document.getElementById('start');
+    const strictButton = document.getElementById('strict');
+
     // set colors back to normal
-    function stopDisplay() {
-      $("#0").css("background", "#0a0");
-      $("#1").css("background", "red");
-      $("#2").css("background", "yellow");
-      $("#3").css("background", "blue");
+    const stopDisplay = () =>{
+      green.style.background = '#0a0';
+      red.style.background = 'red';
+      yellow.style.background = 'yellow';
+      blue.style.background = 'blue';
     }
-  
-    function randomizer() { // add random button
-      turn++;    
-      $("#white").text(turn);
-      var length = $(".col-xs-6").length;
-      var random = Math.floor(Math.random() * length);
+
+    // add random button
+    const randomizer = () =>{
+      turn++;
+      white.innerHTML = turn;
+      const random = Math.floor(Math.random() * divs.length);
+      console.log(divs.length);
       array.push(divs[random]);
       displaySet(array);
     }
+
     // change colors
-    function currentDisplay(color) {
-      switch (color) {
+    const currentDisplay = (colour) =>{
+      switch(colour){
         case "0":
-          $("#0").css("background", "darkgreen");
+          green.style.background = 'darkgreen';
           greenAudio.play();
           break;
         case "1":
-          $("#1").css("background", "darkred");
+          red.style.background = 'darkred';
           redAudio.play();
           break;
         case "2":
-          $("#2").css("background", "#e6d47e");
+          yellow.style.background = '#e6d47e';
           yellowAudio.play();
           break;
         case "3":
-          $("#3").css("background", "darkblue");
+          blue.style.background = 'darkblue';
           blueAudio.play();
           break;
       }
-      window.setTimeout(function() {
+      window.setTimeout(function(){
         stopDisplay();
       }, 200);
     }
-  
-    function displaySet(array) {
-      var i = 0;
-      var interval = setInterval(function() {
+
+    const displaySet = (array) =>{
+      let i = 0;
+      const interval = setInterval(function(){
         currentDisplay(array[i]);
         i++;
-        if (i >= array.length) {
+        if(i >= array.length){
           clearInterval(interval);
         }
       }, 650);
     }
-  
-    function checkIds() {
-      $(".col-xs-6").click(function() {
-        var ID = $(this).attr("id");
-        currentDisplay(ID);
-        arrayCheck.push(ID);
-        // if wrong button unbind and display error
-        if (ID !== array[j]) {
-          j = 0;
-          $("#white").text("X");
-          $(".col-xs-6").unbind();
-          if(strict){
-            return false;
-          }
-          setTimeout(function() {
-            $("#white").text(turn);
-            displaySet(array);
-            checkIds();
-          }, 1000);
-  
-        } else if (typeof array[20] !== 'undefined'){
-          $(".col-xs-6").unbind();
-          $(".text").show();
-          
-        } else if(typeof array[j+1] === 'undefined'){
-          $(".col-xs-6").unbind();
-          setTimeout(function() {
-            j=0;
-            randomizer();
-            checkIds();
-          }, 1000);
-        }
-        else{
-          j++;
-        }
-      });
-    }  
-    
-    function reset(){
-      stopDisplay();
-      $("div:not(.btn)").unbind();
-      array = []; turn = 0; j = 0; arrayCheck = [];   
-      randomizer();
-      displaySet(array);
-      checkIds();
+
+const checkIds = () =>{
+  pads.on('click', function(){
+    const ID = $(this).attr('id');
+    currentDisplay(ID);
+    arrayCheck.push(ID);
+    //If wrong button unbind and display error
+    if(ID !== array[j]){
+      j = 0;
+      white.innerHTML = 'X';
+      pads.unbind();
+      if(strict){
+        return false;
+      }
+      setTimeout(function(){
+        white.innerHTML = turn;
+        displaySet(array);
+        checkIds();
+      }, 1000);
+    }else if(typeof array[20] !== 'undefined'){
+      pads.unbind();
+    }else if(typeof array[j+1] === 'undefined'){
+      pads.unbind();
+      setTimeout(function(){
+        j=0;
+        randomizer();
+        checkIds();
+      }, 1000);
+    }else{
+      j++;
     }
-  
-    $(".start").click(function() {
-      strict = false;
-      $(this).css('color', 'green');
-      $('.strict').css('color', 'black');
-      reset();
-    });
-    
-    $(".strict").click(function(){
-      strict = true;
-      $(this).css('color', 'red');
-      $('.start').css('color', 'black');
-      reset();    
-    });
-  
   });
+}
+
+const reset = () =>{
+  stopDisplay();
+  unam.unbind();
+  array = [];
+  turn = 0;
+  j = 0;
+  arrayCheck = [];
+  randomizer();
+  displaySet(array);
+  checkIds();
+}
+
+startButton.addEventListener('click', function(){
+  strict = false;
+  this.style.color = 'green';
+  strictButton.style.color = 'black';
+  reset();
+});
+
+strictButton.addEventListener('click', function(){
+  strict = true;
+  this.style.color = 'red';
+  startButton.style.color = 'black';
+  reset();
+});
+
+
+  
+});
+
+
+
+
+
