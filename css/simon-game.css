@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Bangers');
 @import url('https://fonts.googleapis.com/css?family=Patrick+Hand');
-
 body {
     background: lightgray;
 }
@@ -47,22 +46,20 @@ body {
 .green {
     background: #0a0;
     border: 2px solid black;
-    
 }
 
-.green-active{
+.green-active {
     background: darkgreen !important;
     border: 2px solid black;
     height: 100%;
 }
-
 
 .red {
     background: red;
     border: 2px solid black;
 }
 
-.red-active{
+.red-active {
     background: darkred !important;
     border: 2px solid black;
     height: 100%;
@@ -73,7 +70,7 @@ body {
     border: 2px solid black;
 }
 
-.yellow-active{
+.yellow-active {
     background: #e6d47e !important;
     border: 2px solid black;
 }
@@ -83,7 +80,7 @@ body {
     border: 2px solid black;
 }
 
-.blue-active{
+.blue-active {
     background: darkblue !important;
     border: 2px solid black;
 }
@@ -105,8 +102,6 @@ h1 {
     font-size: 84px;
 }
 
-
-
 .btn {
     display: inline-block;
     color: #ecf0f1;
@@ -115,18 +110,15 @@ h1 {
     margin: 15px 5px;
 }
 
-
-
-.title{
+.title {
     font-size: 60px;
     color: white;
     font-family: 'Bangers', cursive;
     font-weight: bold;
     text-shadow: 2px 2px 2px black;
-
 }
 
-.author{
+.author {
     color: white;
     font-size: 17px;
     margin-top: -15px;
@@ -137,21 +129,22 @@ h1 {
     color: black;
 }
 
-.green{
+.green {
     cursor: pointer;
 }
 
-.red{
+.red {
     cursor: pointer;
 }
 
-.yellow{
+.yellow {
     cursor: pointer;
 }
 
-.blue{
+.blue {
     cursor: pointer;
 }
+
 
 /*=====HEAD SECTION=====*/
 
@@ -173,7 +166,7 @@ h1 {
     color: black;
 }
 
-.start{
+.start {
     font-size: 28px;
     cursor: pointer;
     color: black;
@@ -182,9 +175,7 @@ h1 {
     display: inline-block;
 }
 
-
-
-.start:hover{
+.start:hover {
     font-size: 28px;
     cursor: pointer;
     color: #0a0;
@@ -193,7 +184,7 @@ h1 {
     display: inline-block;
 }
 
-.strict{
+.strict {
     font-size: 28px;
     cursor: pointer;
     color: black;
@@ -203,7 +194,7 @@ h1 {
     margin-left: 20px;
 }
 
-.strict:hover{
+.strict:hover {
     font-size: 28px;
     cursor: pointer;
     color: red;
@@ -212,101 +203,46 @@ h1 {
     display: inline-block;
 }
 
+.controls {
+    margin-top: 15px;
+    margin-bottom: -15px;
+}
 
-/*=====SLIDER=====*/
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-  
-  .switch input {display:none;}
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: black;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  input:checked + .slider {
-    background-color: #2196F3;
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
 
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
-
-  .controls{
-      margin-top: 15px;
-      margin-bottom: -10px;
-  }
-  
 /*=====SIMON FONT COLOUR=====*/
-  .s{
-      color: #0a0;
-  }
 
-  .i{
-      color: red;
-  }
+.s {
+    color: #0a0;
+}
 
-  .m{
-      color: yellow;
-  }
+.i {
+    color: red;
+}
 
-  .o{
-      color: blue;
-  }
+.m {
+    color: yellow;
+}
 
-  .n{
-      color: #0a0;
-  }
+.o {
+    color: blue;
+}
 
-  .g{
-      color: red;
-  }
+.n {
+    color: #0a0;
+}
 
-  .a{
-      color: yellow;
-  }
+.g {
+    color: red;
+}
 
-  .mm{
-      color: blue;
-  }
+.a {
+    color: yellow;
+}
 
-  .e{
-      color: #0a0;
-  }
+.mm {
+    color: blue;
+}
+
+.e {
+    color: #0a0;
+}
