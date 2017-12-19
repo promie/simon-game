@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-  init();
+  playSimon();
 
 });
 
@@ -28,7 +28,7 @@ const startButton = document.getElementById('start');
 const strictButton = document.getElementById('strict');
 
 
-const init = () => {
+const playSimon = () => {
   const stopDisplay = () => {
     green.style.background = '#0a0';
     red.style.background = 'red';
@@ -98,6 +98,7 @@ const init = () => {
           checkIds();
         }, 1000);
       } else if (typeof array[20] !== 'undefined') {
+        alert('winner!');
         pads.unbind();
       } else if (typeof array[j + 1] === 'undefined') {
         pads.unbind();

@@ -173,6 +173,7 @@ h1 {
     font-weight: bold;
     font-family: 'Patrick Hand', cursive;
     display: inline-block;
+    margin-top: -10px;
 }
 
 .start:hover {
@@ -182,6 +183,7 @@ h1 {
     font-weight: bold;
     font-family: 'Patrick Hand', cursive;
     display: inline-block;
+    margin-top: -10px;
 }
 
 .strict {
@@ -192,6 +194,7 @@ h1 {
     font-family: 'Patrick Hand', cursive;
     display: inline-block;
     margin-left: 20px;
+    margin-top: -10px;
 }
 
 .strict:hover {
@@ -201,13 +204,15 @@ h1 {
     font-weight: bold;
     font-family: 'Patrick Hand', cursive;
     display: inline-block;
+    margin-top: -10px;
+    margin-left: 20px;
+
 }
 
 .controls {
-    margin-top: 5px;
+    margin-top: 15px;
     margin-bottom: -15px;
 }
-
 
 /*=====SIMON FONT COLOUR=====*/
 
