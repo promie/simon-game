@@ -14,9 +14,9 @@ let array = [],
   redAudio = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound2.mp3"),
   yellowAudio = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound3.mp3"),
   blueAudio = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound4.mp3"),
-  failSound = new Audio('https://www.soundjay.com/misc/fail-buzzer-04.mp3')
+  failSound = new Audio('https://www.soundjay.com/misc/fail-buzzer-04.mp3'),
+  successSound = new Audio('http://soundbible.com/grab.php?id=1003&type=mp3');
 
-//Variables
 const green = document.getElementById('0');
 const red = document.getElementById('1');
 const yellow = document.getElementById('2');
@@ -29,8 +29,6 @@ const strictButton = document.getElementById('strict');
 
 
 const init = () => {
-
-  // set colors back to normal
   const stopDisplay = () => {
     green.style.background = '#0a0';
     red.style.background = 'red';
@@ -38,17 +36,14 @@ const init = () => {
     blue.style.background = 'blue';
   }
 
-  // add random button
   const randomizer = () => {
     turn++;
     white.innerHTML = turn;
     const random = Math.floor(Math.random() * divs.length);
-    console.log(divs.length);
     array.push(divs[random]);
     displaySet(array);
   }
 
-  // change colors
   const currentDisplay = (colour) => {
     switch (colour) {
       case "0":
@@ -89,7 +84,6 @@ const init = () => {
       const ID = $(this).attr('id');
       currentDisplay(ID);
       arrayCheck.push(ID);
-      //If wrong button unbind and display error
       if (ID !== array[j]) {
         j = 0;
         white.innerHTML = 'X';
@@ -108,10 +102,11 @@ const init = () => {
       } else if (typeof array[j + 1] === 'undefined') {
         pads.unbind();
         setTimeout(function () {
+          successSound.play();
           j = 0;
           randomizer();
           checkIds();
-        }, 1000);
+        }, 1500);
       } else {
         j++;
       }
