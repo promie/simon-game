@@ -48,18 +48,22 @@ const playSimon = () => {
     switch (colour) {
       case "0":
         green.style.background = 'darkgreen';
+        greenAudio.currentTime = 0;
         greenAudio.play();
         break;
       case "1":
         red.style.background = 'darkred';
+        redAudio.currentTime = 0;
         redAudio.play();
         break;
       case "2":
         yellow.style.background = '#e6d47e';
+        yellowAudio.currentTime = 0;
         yellowAudio.play();
         break;
       case "3":
         blue.style.background = 'darkblue';
+        blueAudio.currentTime = 0;
         blueAudio.play();
         break;
     }
@@ -87,6 +91,7 @@ const playSimon = () => {
       if (ID !== array[j]) {
         j = 0;
         white.innerHTML = 'X';
+        failSound.currentTime = 0;
         failSound.play();
         pads.unbind();
         if (strict) {
@@ -103,6 +108,7 @@ const playSimon = () => {
       } else if (typeof array[j + 1] === 'undefined') {
         pads.unbind();
         setTimeout(function () {
+          successSound.currentTime = 0;
           successSound.play();
           j = 0;
           randomizer();
